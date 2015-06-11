@@ -78,7 +78,7 @@ string type2str(int type) {
   return r;
 }
 
-void native_gl_resize(JNIEnv *env UNUSED, jclass clazz UNUSED, jint width, jint height)
+void native_glResize(JNIEnv *env UNUSED, jclass clazz UNUSED, jint width, jint height)
 {
 	LOGI("native_resize ");
 	if (height==0)										// Prevent A Divide By Zero By
@@ -99,7 +99,7 @@ void native_gl_resize(JNIEnv *env UNUSED, jclass clazz UNUSED, jint width, jint 
 
 }
 
-void native_gl_render(JNIEnv *env UNUSED, jclass clazz UNUSED)
+void native_glRender(JNIEnv *env UNUSED, jclass clazz UNUSED)
 {
     if (recognizedObjectId > 0) {
 
@@ -193,7 +193,7 @@ void native_start(JNIEnv *env UNUSED, jclass clazz UNUSED)
 
 }
 
-void native_key_event(JNIEnv *env,jclass clazz,jint key,jint status)
+void native_keyEvent(JNIEnv *env,jclass clazz,jint key,jint status)
 {
 	LOGI("native_key_event  key:%d action:%d",key,status);
 	if(status == 0)
@@ -252,11 +252,8 @@ cv::Mat query_image;
 int findFeatures(cv::Mat addrGray, cv::Mat addrRgba)
 {
 
-	cv::Mat& mg = addrGray;
-    cv::Mat& mr = addrRgba;
-
-    cv::Mat mGray = mg.clone();
-    cv::Mat mRgba = mr.clone();
+	cv::Mat& mGray = addrGray;
+    cv::Mat& mRgba = addrRgba;
 
 	int returnThis = 0;
 
@@ -279,24 +276,21 @@ int findFeatures(cv::Mat addrGray, cv::Mat addrRgba)
 	    // Convert homography for reduced image for the camera image
 	    // CV_8UC1 to CV_32FC1
 	    LOGI("QUERY_SCALE: %d",query_scale);
-//	    cv::Mat myMat = recog_result[0].pose_mat;
-//                    cv::Mat pose_mat_scale = myMat.clone();
-//                    pose_mat_scale.row(0) *= query_scale;
-//                    pose_mat_scale.row(1) *= query_scale;
+//                    cv::Mat pose_mat_scale = recog_result[0].pose_mat;
+//                    recog_result[0].pose_mat.row(0) *= query_scale;
+//                    recog_result[0].pose_mat.row(1) *= query_scale;
 //
-//                    cv::Mat& test = mGray;
-//
-//std::vector<cv::Point2f> argh = recog_result[0].object_position;
-//double testds= (double) query_scale;
-//
-//                    vector<cv::Point2f> test1 = cvar::scalePoints(
-//                            argh,
-//                            testds);
+//                    const cv::Mat& test = mGray;
 
-                    //trckOBJ->startTracking(test, test1);
-                    //track_f = viewMDL->setRecogId(recog_result[0].img_id,
-                     //       pose_mat_scale);
+//        std::vector<cv::Point2f> objPos = recog_result[0].object_position;
+//
+//        std::vector<cv::Point2f> test1 = cvar::scalePoints(
+//                objPos,
+//                (double) query_scale);
 
+        //trckOBJ->startTracking(test, test1);
+        //track_f = viewMDL->setRecogId(recog_result[0].img_id,
+        //        pose_mat_scale);
 
         seq_id = 0;
         wait_seq_id = 0;
@@ -335,7 +329,7 @@ int findFeatures(cv::Mat addrGray, cv::Mat addrRgba)
 }
 
 
-void native_touch_event(JNIEnv *env,jclass clazz,jfloat x,jfloat y,jint status)
+void native_touchEvent(JNIEnv *env,jclass clazz,jfloat x,jfloat y,jint status)
 {
     //LOGI("touch_event: %d %d %d", x,y,status);
 }

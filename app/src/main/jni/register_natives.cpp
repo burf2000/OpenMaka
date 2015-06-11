@@ -8,14 +8,14 @@
 #define NELEM(x) ((int)(sizeof(x) / sizeof((x)[0])))
 #endif
 
-static const char *s_class_path_name = "de/alextape/openmaka/MainActivity";
+static const char *s_class_path_name = "de/alextape/openmaka/NativeFunctions";
 
 static JNINativeMethod s_methods[] = {
 	{"native_start", "()V", (void*) native_start},
-	{"native_gl_resize", "(II)V", (void*) native_gl_resize},
-	{"native_gl_render", "()V", (void*) native_gl_render},
-	{"native_key_event", "(II)V", (void*) native_key_event},
-	{"native_touch_event", "(FFI)V", (void*) native_touch_event},
+	{"native_glResize", "(II)V", (void*) native_glResize},
+	{"native_glRender", "()V", (void*) native_glRender},
+	{"native_keyEvent", "(II)V", (void*) native_keyEvent},
+	{"native_touchEvent", "(FFI)V", (void*) native_touchEvent},
 	{"native_displayFunction", "(JJ)I", (int*) native_displayFunction},
 	{"native_initialize", "(JLjava/lang/String;)Z", (bool*) native_initialize},
     // {"native_findFeatures", "(JJ)I", (int*) native_findFeatures},

@@ -12,7 +12,7 @@
         >
         <!-- TODO remove debuggable later -->
 
-        <activity android:name="MainActivity"
+        <activity android:name="AppActivity"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
                   android:configChanges="keyboardHidden|orientation"
